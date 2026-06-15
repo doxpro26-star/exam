@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DoxPro Python Mastery - MCQ Exam</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f5f5f0;
+      color: #333;
+    }
+
+    /* YELLOW/WHITE/GRAY THEME */
+    :root {
+      --yellow: #FFD700;
+      --yellow-light: #FFF8DC;
+      --yellow-dark: #E6B800;
+      --gray-dark: #555;
+      --gray-mid: #888;
+      --gray-light: #ddd;
+      --white: #fff;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #FFD700 0%, #FFC200 50%, #E6A800 100%);
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .header h1 {
+      font-size: 2.2em;
+      color: #222;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .header p {
+      color: #555;
+      font-size: 1.05em;
+      margin-top: 6px;
+    }
+
+    .header .badge {
+      display: inline-block;
+      background: #222;
+      color: #FFD700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* STUDENT FORM */
+    #studentForm {
+      background: #fff;
+      border: 2px solid #FFD700;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 24px 0;
+      box-shadow: 0 2px 12px rgba(255, 215, 0, 0.15);
+    }
+
+    #studentForm h2 {
+      color: #555;
+      margin-bottom: 18px;
+      font-size: 1.2em;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 6px;
+      font-size: 0.9em;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #FFD700;
+    }
+
+    .form-group input[readonly] {
+      background: #f9f6e0;
+      border-color: #E6A800;
+      color: #7a6500;
+      cursor: not-allowed;
+      font-weight: 700;
+    }
+
+    /* SECTION TABS */
+    .section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+      background: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .section-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 2px solid #ddd;
+      background: #f9f9f9;
+      cursor: pointer;
+      font-size: 0.82em;
+      font-weight: 600;
+      color: #666;
+      transition: all 0.2s;
+    }
+
+    .section-btn.active {
+      background: #FFD700;
+      border-color: #E6A800;
+      color: #222;
+    }
+
+    .section-btn:hover {
+      border-color: #FFD700;
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrap {
+      background: #eee;
+      border-radius: 20px;
+      height: 10px;
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #FFD700, #E6A800);
+      height: 100%;
+      border-radius: 20px;
+      transition: width 0.4s;
+    }
+
+    .progress-label {
+      text-align: right;
+      font-size: 0.82em;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* QUESTION CARD */
+    .section-group {
+      display: none;
+    }
+
+    .section-group.active {
+      display: block;
+    }
+
+    .section-title {
+      background: linear-gradient(90deg, #FFD700, #FFF8DC);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 16px;
+      border-left: 5px solid #E6A800;
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      border-left: 4px solid #ddd;
+      transition: border-color 0.3s;
+    }
+
+    .question-card:hover {
+      border-left-color: #FFD700;
+    }
+
+    .question-card.answered {
+      border-left-color: #FFD700;
+    }
+
+    .question-card.correct {
+      border-left-color: #4CAF50;
+      background: #f9fff9;
+    }
+
+    .question-card.wrong {
+      border-left-color: #f44336;
+      background: #fff9f9;
+    }
+
+    .q-number {
+      display: inline-block;
+      background: #FFD700;
+      color: #222;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.82em;
+      margin-bottom: 8px;
+    }
+
+    .q-text {
+      font-size: 1em;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    /* Code blocks in questions */
+    .q-code {
+      background: #2b2b2b;
+      color: #f8f8f2;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88em;
+      margin: 10px 0;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* OPTIONS */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 2px solid #eee;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95em;
+    }
+
+    .option-label:hover {
+      border-color: #FFD700;
+      background: #FFFDE7;
+    }
+
+    .option-label input[type="radio"] {
+      accent-color: #FFD700;
+      width: 16px;
+      height: 16px;
+    }
+
+    .option-label.selected {
+      border-color: #FFD700;
+      background: #FFF8DC;
+      font-weight: 600;
+    }
+
+    .option-label.correct-ans {
+      border-color: #4CAF50;
+      background: #E8F5E9;
+    }
+
+    .option-label.wrong-ans {
+      border-color: #f44336;
+      background: #FFEBEE;
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 12px 28px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: #FFD700;
+      color: #222;
+      box-shadow: 0 3px 10px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: #E6C200;
+      transform: translateY(-1px);
+    }
+
+    .btn-gray {
+      background: #666;
+      color: #fff;
+    }
+
+    .btn-gray:hover {
+      background: #444;
+    }
+
+    .btn-success {
+      background: #4CAF50;
+      color: #fff;
+    }
+
+    .btn-danger {
+      background: #f44336;
+      color: #fff;
+    }
+
+    .action-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 24px 0;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    /* RESULTS */
+    #resultsPanel {
+      display: none;
+    }
+
+    .results-header {
+      background: linear-gradient(135deg, #FFD700, #E6A800);
+      border-radius: 14px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-header h2 {
+      font-size: 2em;
+      color: #222;
+    }
+
+    .score-big {
+      font-size: 3.5em;
+      font-weight: 900;
+      color: #222;
+    }
+
+    .score-label {
+      font-size: 1em;
+      color: #555;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-size: 1.3em;
+      font-weight: 800;
+      margin-top: 10px;
+      background: #222;
+      color: #FFD700;
+    }
+
+    /* LEADERBOARD */
+    .leaderboard {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .leaderboard h3 {
+      color: #555;
+      margin-bottom: 16px;
+      font-size: 1.2em;
+      border-bottom: 2px solid #FFD700;
+      padding-bottom: 8px;
+    }
+
+    .lb-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      background: #f9f9f9;
+      border: 1px solid #eee;
+    }
+
+    .lb-row:nth-child(2) {
+      background: #FFF8DC;
+      border-color: #FFD700;
+    }
+
+    .lb-row:nth-child(3) {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    .lb-rank {
+      font-weight: 900;
+      font-size: 1.1em;
+      width: 30px;
+      text-align: center;
+      color: #888;
+    }
+
+    .lb-rank.gold {
+      color: #FFD700;
+    }
+
+    .lb-rank.silver {
+      color: #aaa;
+    }
+
+    .lb-rank.bronze {
+      color: #cd7f32;
+    }
+
+    .lb-name {
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .lb-score {
+      font-weight: 800;
+      color: #555;
+    }
+
+    .lb-pct {
+      font-size: 0.85em;
+      color: #888;
+      margin-left: 8px;
+    }
+
+    /* STATS GRID */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border-top: 4px solid #FFD700;
+    }
+
+    .stat-num {
+      font-size: 2em;
+      font-weight: 900;
+      color: #333;
+    }
+
+    .stat-label {
+      font-size: 0.8em;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* TIMER */
+    .timer-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+      margin-bottom: 16px;
+    }
+
+    .timer-icon {
+      font-size: 1.3em;
+    }
+
+    .timer-value {
+      font-size: 1.3em;
+      font-weight: 800;
+      color: #333;
+      font-family: monospace;
+    }
+
+    .timer-label {
+      color: #888;
+      font-size: 0.85em;
+    }
+
+    .timer-value.warning {
+      color: #FF6B00;
+    }
+
+    .timer-value.danger {
+      color: #f44336;
+      animation: blink 0.5s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    /* PRINT STYLES */
+    @media print {
+
+      .section-nav,
+      .action-bar,
+      .timer-bar,
+      #studentForm button,
+      .progress-wrap {
+        display: none !important;
+      }
+
+      .section-group {
+        display: block !important;
+      }
+
+      .question-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+
+      body {
+        background: white;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 1.5em;
+      }
+
+      .score-big {
+        font-size: 2.5em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:10px">
+      <img src="data:image/png;base64,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" alt="DoxPro Robotics" style="height:70px;border-radius:8px;" />
+      <div>
+        <h1>🐍 DoxPro Python Mastery</h1>
+        <p>Comprehensive MCQ Examination — Theory &amp; Coding</p>
+        <span class="badge" id="versionBadge">55 Questions · 6 Sections</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- STUDENT REGISTRATION -->
+    <div id="studentForm">
+      <h2>📝 Student Details</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="studentName" placeholder="Enter your full name" oninput="resetNameField();" />
+        </div>
+        <div class="form-group">
+          <label>Roll Number / ID</label>
+          <input type="text" id="studentId" placeholder="e.g. 2024001" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Class / Batch</label>
+          <input type="text" id="studentClass" placeholder="e.g. Python Batch A" />
+        </div>
+        <div class="form-group">
+          <label>Duration (minutes) 🔒</label>
+          <input type="number" id="examDuration" value="90" readonly title="Duration is fixed at 90 minutes" />
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="startExam()">🚀 Start Exam</button>
+      <div id="accessError" style="display:none;margin-top:14px;padding:14px 18px;background:#fff0f0;border:2px solid #f44336;border-radius:8px;color:#c0392b;font-weight:700;font-size:0.95em;">
+        ⛔ Access Denied — Your name is not on the authorized student list.
+      </div>
+      <div id="versionInfo" style="display:none;margin-top:14px;padding:14px 18px;background:#f0fff4;border:2px solid #4CAF50;border-radius:8px;color:#1b6b34;font-weight:700;font-size:0.95em;">
+        ✅ Welcome! Your exam version has been assigned automatically.
+      </div>
+    </div>
+
+    <!-- EXAM PANEL -->
+    <div id="examPanel" style="display:none">
+      <div class="timer-bar">
+        <span class="timer-icon">⏱️</span>
+        <span class="timer-value" id="timerDisplay">60:00</span>
+        <span class="timer-label">Time Remaining</span>
+        <span style="flex:1"></span>
+        <span id="answeredCount" style="font-size:0.9em;color:#888">0 / 55 answered</span>
+      </div>
+
+      <!-- PROGRESS -->
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar" style="width:0%"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">0% complete</div>
+
+      <!-- SECTION NAV -->
+      <div class="section-nav">
+        <button class="section-btn active" onclick="showSection(0,this)">§1 Conditional Statements</button>
+        <button class="section-btn" onclick="showSection(1,this)">§2 While Loop</button>
+        <button class="section-btn" onclick="showSection(2,this)">§3 For Loop</button>
+        <button class="section-btn" onclick="showSection(3,this)">§4 List Functions</button>
+        <button class="section-btn" onclick="showSection(4,this)">§5 String Functions</button>
+        <button class="section-btn" onclick="showSection(5,this)">§6 Python History</button>
+      </div>
+
+      <!-- QUESTIONS -->
+      <div id="questionsContainer"></div>
+
+      <div class="action-bar">
+        <button class="btn btn-gray" onclick="clearAnswers()">🗑️ Clear All</button>
+        <button class="btn btn-primary" onclick="submitExam()">✅ Submit Exam</button>
+      </div>
+    </div>
+
+    <!-- RESULTS PANEL -->
+    <div id="resultsPanel">
+      <div class="results-header">
+        <h2 id="resultName"></h2>
+        <div class="score-big" id="resultScore"></div>
+        <div class="score-label">out of 100</div>
+        <div class="grade-badge" id="resultGrade"></div>
+      </div>
+
+      <div class="stats-grid" id="statsGrid"></div>
+
+      <div class="action-bar">
+        <button class="btn btn-gray" onclick="reviewAnswers()">🔍 Review Answers</button>
+        <button class="btn btn-primary" onclick="newExam()">🔄 New Student</button>
+        <button class="btn btn-gray" onclick="window.print()">🖨️ Print Results</button>
+      </div>
+
+      <div class="leaderboard" id="leaderboard">
+        <div
+          style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;border-bottom:2px solid #FFD700;padding-bottom:8px">
+          <h3 style="margin:0;border:none;padding:0">🏆 Live Leaderboard <small
+              style="font-size:0.7em;color:#aaa;font-weight:400">(Google Sheets)</small></h3>
+          <button class="btn btn-gray" style="padding:6px 14px;font-size:0.82em" onclick="renderLeaderboard()">🔄
+            Refresh</button>
+        </div>
+        <div id="lbContent">
+          <p style="color:#aaa;text-align:center;padding:20px">Loading leaderboard...</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ============================================================
+    // QUESTION DATA
+    // ============================================================
+    const questions = [
+      // SECTION 1: CONDITIONAL STATEMENTS (1-10)
+      { s: 0, n: 1, q: "Which keyword is used to start an if-else ladder in Python?", opts: ["elif", "else", "if", "switch"], ans: 2 },
+      { s: 0, n: 2, q: "What is the correct syntax for an if statement in Python?", opts: ["if x > 5 then:", "if (x > 5):", "if x > 5:", "if x > 5 do:"], ans: 2 },
+      { s: 0, n: 3, q: "What is the output?\nx = 10\nif x > 5:\n    print('A')\nelse:\n    print('B')", opts: ["B", "A", "AB", "Error"], ans: 1 },
+      { s: 0, n: 4, q: "Which keyword is Python's equivalent of 'else if'?", opts: ["elseif", "else if", "elif", "elsif"], ans: 2 },
+      { s: 0, n: 5, q: "What is the ternary (one-line) if-else syntax in Python?", opts: ["x if cond else y", "cond ? x : y", "if cond then x else y", "x when cond else y"], ans: 0 },
+      { s: 0, n: 6, q: "What does the 'pass' statement do inside an if block?", opts: ["Skips the condition", "Acts as a placeholder, does nothing", "Exits the program", "Raises an error"], ans: 1 },
+      { s: 0, n: 7, q: "What is the output?\nx = 0\nif x:\n    print('True')\nelse:\n    print('False')", opts: ["True", "False", "0", "Error"], ans: 1 },
+      { s: 0, n: 8, q: "Which of the following is a valid nested if statement?", opts: ["if x > 1: if y > 1:", "if x > 1:\\n  if y > 1:", "nested if x y", "if(x > 1 && y > 1)"], ans: 1 },
+      { s: 0, n: 9, q: "What is the output?\nx = 15\nif x < 10:\n    print('Small')\nelif x < 20:\n    print('Medium')\nelse:\n    print('Large')", opts: ["Small", "Medium", "Large", "Error"], ans: 1 },
+      { s: 0, n: 10, q: "Which logical operator returns True only if both conditions are True?", opts: ["or", "not", "and", "xor"], ans: 2 },
+
+      // SECTION 2: WHILE LOOP (11-20)
+      { s: 1, n: 11, q: "Which loop continues as long as a condition is True?", opts: ["for", "while", "do-while", "loop"], ans: 1 },
+      { s: 1, n: 12, q: "What is the output?\ni = 0\nwhile i < 3:\n    print(i)\n    i += 1", opts: ["0 1 2 3", "0 1 2", "1 2 3", "0 1"], ans: 1 },
+      { s: 1, n: 13, q: "What creates an infinite while loop?", opts: ["while False:", "while 0:", "while True:", "while None:"], ans: 2 },
+      { s: 1, n: 14, q: "Which keyword exits a while loop immediately?", opts: ["exit", "stop", "break", "end"], ans: 2 },
+      { s: 1, n: 15, q: "What does 'continue' do inside a while loop?", opts: ["Exits the loop", "Skips current iteration and continues", "Pauses the loop", "Restarts from beginning"], ans: 1 },
+      { s: 1, n: 16, q: "What is the output?\nx = 5\nwhile x > 0:\n    x -= 2\nprint(x)", opts: ["1", "-1", "0", "3"], ans: 1 },
+      { s: 1, n: 17, q: "What is the 'else' clause in a while loop used for?", opts: ["Runs if loop body runs once", "Runs when condition becomes False without break", "Runs if condition is never True", "Not valid in while loops"], ans: 1 },
+      { s: 1, n: 18, q: "How many times does 'Hello' print?\ni = 1\nwhile i <= 4:\n    print('Hello')\n    i += 1", opts: ["3", "4", "5", "Infinite"], ans: 1 },
+      { s: 1, n: 19, q: "What is the output?\nn = 10\nwhile n > 0:\n    n //= 2\nprint(n)", opts: ["1", "0", "2", "5"], ans: 1 },
+      { s: 1, n: 20, q: "What happens if the while loop condition is False at the start?", opts: ["Runs once", "Runs forever", "Loop body never executes", "Raises an error"], ans: 2 },
+
+      // SECTION 3: FOR LOOP (21-30)
+      { s: 2, n: 21, q: "Which function generates a sequence of numbers for a for loop?", opts: ["seq()", "list()", "range()", "count()"], ans: 2 },
+      { s: 2, n: 22, q: "What is the output of: for i in range(3): print(i)", opts: ["1 2 3", "0 1 2 3", "0 1 2", "1 2"], ans: 2 },
+      { s: 2, n: 23, q: "What does range(2, 8, 2) produce?", opts: ["2 4 6 8", "2 4 6", "0 2 4 6", "2 3 4 5 6 7"], ans: 1 },
+      { s: 2, n: 24, q: "Which built-in function returns both index and value in a for loop?", opts: ["index()", "zip()", "enumerate()", "iter()"], ans: 2 },
+      { s: 2, n: 25, q: "What is the output?\nfor ch in 'abc':\n    print(ch, end='')", opts: ["a b c", "abc", "a\\nb\\nc", "Error"], ans: 1 },
+      { s: 2, n: 26, q: "What is a list comprehension?", opts: ["A comment about a list", "A concise way to create lists using a for loop", "A function to sort lists", "A loop without a body"], ans: 1 },
+      { s: 2, n: 27, q: "What is the output of: [x**2 for x in range(4)]", opts: ["[1, 4, 9, 16]", "[0, 1, 4, 9]", "[0, 1, 2, 3]", "[1, 2, 3, 4]"], ans: 1 },
+      { s: 2, n: 28, q: "How do you iterate over both keys and values of a dictionary?", opts: ["dict.keys()", "dict.values()", "dict.items()", "dict.all()"], ans: 2 },
+      { s: 2, n: 29, q: "What is the output?\nfor i in range(5):\n    if i == 3:\n        break\nprint(i)", opts: ["4", "3", "2", "5"], ans: 1 },
+      { s: 2, n: 30, q: "What does the 'else' clause after a for loop execute?", opts: ["When loop body runs once", "After the loop finishes without a break", "When the iterable is empty", "When break is hit"], ans: 1 },
+
+      // SECTION 4: LIST INBUILT FUNCTIONS (31-40)
+      { s: 3, n: 31, q: "Which method adds an element to the end of a list?", opts: ["add()", "push()", "append()", "insert()"], ans: 2 },
+      { s: 3, n: 32, q: "What does list.pop() do by default?", opts: ["Removes first element", "Removes last element and returns it", "Clears the list", "Returns without removing"], ans: 1 },
+      { s: 3, n: 33, q: "Which method removes the first occurrence of a value from a list?", opts: ["delete()", "discard()", "pop()", "remove()"], ans: 3 },
+      { s: 3, n: 34, q: "What is the output of len([1, 2, [3, 4], 5])?", opts: ["5", "4", "3", "6"], ans: 1 },
+      { s: 3, n: 35, q: "Which method sorts a list in place?", opts: ["sorted()", "order()", "sort()", "arrange()"], ans: 2 },
+      { s: 3, n: 36, q: "What does list.reverse() do?", opts: ["Returns a reversed copy", "Reverses the list in place", "Sorts descending", "Removes last element"], ans: 1 },
+      { s: 3, n: 37, q: "Which method returns the index of the first occurrence of a value?", opts: ["find()", "search()", "index()", "locate()"], ans: 2 },
+      { s: 3, n: 38, q: "What is the output?\nL = [3, 1, 4, 1, 5]\nprint(L.count(1))", opts: ["1", "2", "3", "0"], ans: 1 },
+      { s: 3, n: 39, q: "Which method adds all elements of another list to the end?", opts: ["join()", "merge()", "extend()", "append()"], ans: 2 },
+      { s: 3, n: 40, q: "What does list.clear() do?", opts: ["Deletes the list variable", "Removes all elements from the list", "Returns an empty list", "Resets list to [0]"], ans: 1 },
+
+      // SECTION 5: STRING INBUILT FUNCTIONS (41-50)
+      { s: 4, n: 41, q: "Which method converts all characters to uppercase?", opts: ["capitalize()", "title()", "upper()", "toupper()"], ans: 2 },
+      { s: 4, n: 42, q: "What does str.strip() remove?", opts: ["All spaces", "Leading and trailing whitespace", "Newline only", "Middle spaces"], ans: 1 },
+      { s: 4, n: 43, q: "What is the output of 'hello'.replace('l', 'r')?", opts: ["'herlo'", "'herro'", "'hello'", "'helo'"], ans: 1 },
+      { s: 4, n: 44, q: "Which method splits a string into a list by a separator?", opts: ["slice()", "break()", "split()", "divide()"], ans: 2 },
+      { s: 4, n: 45, q: "What is the output of 'Python'.find('th')?", opts: ["1", "2", "3", "-1"], ans: 1 },
+      { s: 4, n: 46, q: "Which method joins a list of strings with a separator?", opts: ["concat()", "merge()", "join()", "combine()"], ans: 2 },
+      { s: 4, n: 47, q: "What does 'abc'.startswith('ab') return?", opts: ["False", "True", "None", "Error"], ans: 1 },
+      { s: 4, n: 48, q: "What is the output of 'hello world'.title()?", opts: ["HELLO WORLD", "hello world", "Hello World", "Hello world"], ans: 2 },
+      { s: 4, n: 49, q: "Which method checks if all characters are alphabetic?", opts: ["isalnum()", "isdigit()", "isalpha()", "ischar()"], ans: 2 },
+      { s: 4, n: 50, q: "What is the output of ' hello '.lstrip()?", opts: ["'hello '", "'hello'", "' hello'", "'hello '"], ans: 0 },
+
+      // SECTION 6: PYTHON HISTORY (51-55)
+      { s: 5, n: 51, q: "Who created the Python programming language?", opts: ["Dennis Ritchie", "James Gosling", "Guido van Rossum", "Bjarne Stroustrup"], ans: 2 },
+      { s: 5, n: 52, q: "In which year was Python first released to the public?", opts: ["1985", "1989", "1991", "1995"], ans: 3 },
+      { s: 5, n: 53, q: "Python's name was inspired by which TV show?", opts: ["Python the Movie", "Monty Python's Flying Circus", "The Python Chronicles", "Snake Tales"], ans: 1 },
+      { s: 5, n: 54, q: "Which version introduced many modern Python features and became very popular?", opts: ["Python 1.0", "Python 2.5", "Python 3.0", "Python 2.7"], ans: 3 },
+      { s: 5, n: 55, q: "What was the main goal of Python's creator?", opts: ['Make the fastest language','Make a language that is easy to read and use','Build operating systems','Replace C language'], ans: 2 },
+    ];
+
+    const sectionNames = [
+      "Section 1: Conditional Statements",
+      "Section 2: While Loop",
+      "Section 3: For Loop",
+      "Section 4: List Inbuilt Functions",
+      "Section 5: String Inbuilt Functions",
+      "Section 6: Python History"
+    ];
+
+    // ============================================================
+    // STATE
+    // ============================================================
+    let userAnswers = new Array(55).fill(null);
+    let timerInterval = null;
+    let timeLeft = 2700;
+    let examStarted = false;
+    let currentSection = 0;
+    let currentVersion = 'A';
+
+    const VERSION_ORDERS = {
+      'A': null,
+      'B': [5,2,8,0,7,3,9,1,6,4, 15,11,18,10,17,13,19,12,16,14, 25,22,28,20,27,23,29,21,26,24, 35,32,38,30,37,33,39,31,36,34, 45,42,48,40,47,43,49,41,46,44, 52,50,54,51,53],
+      'C': [3,7,1,9,4,6,0,8,2,5, 12,16,10,18,13,15,11,17,14,19, 22,26,20,28,23,25,21,27,24,29, 32,36,30,38,33,35,31,37,34,39, 42,46,40,48,43,45,41,47,44,49, 51,54,50,53,52],
+      'D': [8,4,0,6,2,9,5,1,7,3, 18,14,10,16,12,19,15,11,17,13, 28,24,20,26,22,29,25,21,27,23, 38,34,30,36,32,39,35,31,37,33, 48,44,40,46,42,49,45,41,47,43, 53,51,54,52,50]
+    };
+
+    function getOrderedQuestions() {
+      const order = VERSION_ORDERS[currentVersion];
+      if (!order) return questions;
+      return order.map(i => questions[i]);
+    }
+
+    // ============================================================
+    // BUILD QUESTIONS
+    // ============================================================
+    function buildQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+      const ordered = getOrderedQuestions();
+      let globalQNum = 0;
+
+      for (let s = 0; s < 6; s++) {
+        const div = document.createElement('div');
+        div.className = 'section-group' + (s === 0 ? ' active' : '');
+        div.id = 'section-' + s;
+
+        div.innerHTML = `<div class="section-title">📚 ${sectionNames[s]}</div>`;
+
+        ordered.filter(q => q.s === s).forEach(q => {
+          const idx = ordered.indexOf(q);
+          globalQNum++;
+          let codeBlock = q.code ? `<div class="q-code">${escHtml(q.code)}</div>` : '';
+          let optionsHtml = q.opts.map((opt, i) => `
+        <label class="option-label" id="opt-${idx}-${i}">
+          <input type="radio" name="q${idx}" value="${i}" onchange="selectAnswer(${idx}, ${i})">
+          <span><strong>${String.fromCharCode(65 + i)}.</strong> ${opt}</span>
+        </label>
+      `).join('');
+
+          div.innerHTML += `
+        <div class="question-card" id="card-${idx}">
+          <span class="q-number">Q${globalQNum}</span>
+          <div class="q-text">${q.q}</div>
+          ${codeBlock}
+          <div class="options" id="opts-${idx}">${optionsHtml}</div>
+        </div>
+      `;
+        });
+        container.appendChild(div);
+      }
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // ============================================================
+    // EXAM CONTROLS
+    // ============================================================
+    const ALLOWED_STUDENTS = ["rudrani", "sanika", "sneha", "srushti"];
+    const VERSION_MAP = {"rudrani": "A", "sanika": "B", "sneha": "C", "srushti": "D"};
+
+    function resetNameField() {
+      document.getElementById('accessError').style.display = 'none';
+      document.getElementById('versionInfo').style.display = 'none';
+      document.getElementById('studentName').style.borderColor = '';
+    }
+
+    function getStudentVersion(name) {
+      return VERSION_MAP[name.trim().toLowerCase()] || null;
+    }
+
+    function startExam() {
+      const name = document.getElementById('studentName').value.trim();
+      if (!name) { alert('Please enter your name to start the exam.'); return; }
+
+      const studentVersion = getStudentVersion(name);
+      if (!studentVersion) {
+        document.getElementById('studentName').style.borderColor = '#f44336';
+        document.getElementById('accessError').style.display = 'block';
+        document.getElementById('versionInfo').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('accessError').style.display = 'none';
+      document.getElementById('versionInfo').style.display = 'block';
+      document.getElementById('studentName').style.borderColor = '#4CAF50';
+      document.getElementById('versionBadge').textContent = `55 Questions · 6 Sections · Version ${studentVersion}`;
+
+      setTimeout(() => {
+
+        const mins = parseInt(document.getElementById('examDuration').value) || 90;
+        timeLeft = mins * 60;
+        currentVersion = studentVersion;
+
+        document.getElementById('studentForm').style.display = 'none';
+        document.getElementById('examPanel').style.display = 'block';
+
+        buildQuestions();
+        startTimer();
+        examStarted = true;
+      }, 800);
+    }
+
+    function startTimer() {
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          alert("⏰ Time's up! Auto-submitting your exam.");
+          submitExam();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(timeLeft / 60);
+      const s = timeLeft % 60;
+      const el = document.getElementById('timerDisplay');
+      el.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      el.className = 'timer-value' + (timeLeft < 300 ? ' danger' : timeLeft < 600 ? ' warning' : '');
+    }
+
+    function selectAnswer(idx, val) {
+      userAnswers[idx] = val;
+      document.getElementById('card-' + idx).classList.add('answered');
+
+      // Highlight selected
+      for (let i = 0; i < 4; i++) {
+        const el = document.getElementById(`opt-${idx}-${i}`);
+        if (el) el.classList.toggle('selected', i === val);
+      }
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const answered = userAnswers.filter(a => a !== null).length;
+      const pct = Math.round((answered / 55) * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = pct + '% complete';
+      document.getElementById('answeredCount').textContent = `${answered} / 55 answered`;
+    }
+
+    function showSection(idx, btn) {
+      document.querySelectorAll('.section-group').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.section-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentSection = idx;
+    }
+
+    function clearAnswers() {
+      if (!confirm('Clear all answers? This cannot be undone.')) return;
+      userAnswers.fill(null);
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      document.querySelectorAll('.question-card').forEach(c => c.classList.remove('answered'));
+      document.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+      updateProgress();
+    }
+
+    // ============================================================
+    // SUBMIT & SCORE
+    // ============================================================
+    async function submitExam() {
+      const answered = userAnswers.filter(a => a !== null).length;
+      if (answered < 55 && !confirm(`You've answered ${answered}/55 questions. Submit anyway?`)) return;
+
+      clearInterval(timerInterval);
+
+      let score = 0;
+      getOrderedQuestions().forEach((q, i) => {
+        if (userAnswers[i] === q.ans) score++;
+      });
+
+      const name = document.getElementById('studentName').value.trim();
+      const rollNo = document.getElementById('studentId').value.trim();
+      const batch = document.getElementById('studentClass').value.trim();
+      const pct = Math.round((score / 55) * 100);
+
+      // Save to Google Sheet (await so data is sent before leaderboard loads)
+      await saveResult(name, rollNo, batch, score, pct);
+
+      document.getElementById('examPanel').style.display = 'none';
+      showResults(name, score, pct, answered);
+    }
+
+    function getGrade(pct) {
+      if (pct >= 90) return { g: 'A+', label: 'Outstanding! 🏆' };
+      if (pct >= 80) return { g: 'A', label: 'Excellent! 🌟' };
+      if (pct >= 70) return { g: 'B+', label: 'Very Good! 👏' };
+      if (pct >= 60) return { g: 'B', label: 'Good! 👍' };
+      if (pct >= 50) return { g: 'C', label: 'Average — Keep Practicing 📚' };
+      return { g: 'F', label: 'Needs Improvement 💪' };
+    }
+
+    function showResults(name, score, pct, answered) {
+      const grade = getGrade(pct);
+      document.getElementById('resultsPanel').style.display = 'block';
+      document.getElementById('resultName').textContent = '🎓 ' + name;
+      document.getElementById('resultScore').textContent = score;
+      document.getElementById('resultGrade').textContent = grade.g + ' — ' + grade.label;
+
+      const correct = score;
+      const wrong = answered - score;
+      const skipped = 55 - answered;
+
+      document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="stat-num" style="color:#4CAF50">${correct}</div><div class="stat-label">Correct ✅</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#f44336">${wrong}</div><div class="stat-label">Wrong ❌</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#888">${skipped}</div><div class="stat-label">Skipped ⏭️</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#FFD700">${pct}%</div><div class="stat-label">Percentage</div></div>
+  `;
+
+      renderLeaderboard();
+      window.scrollTo(0, 0);
+    }
+
+    // ============================================================
+    // REVIEW ANSWERS
+    // ============================================================
+    function reviewAnswers() {
+      document.getElementById('resultsPanel').style.display = 'none';
+      document.getElementById('examPanel').style.display = 'block';
+
+      // Show correct/wrong on all cards
+      getOrderedQuestions().forEach((q, i) => {
+        const card = document.getElementById('card-' + i);
+        const userAns = userAnswers[i];
+        card.classList.remove('answered', 'correct', 'wrong');
+
+        if (userAns === null) return;
+        card.classList.add(userAns === q.ans ? 'correct' : 'wrong');
+
+        for (let j = 0; j < q.opts.length; j++) {
+          const opt = document.getElementById(`opt-${i}-${j}`);
+          if (!opt) continue;
+          opt.classList.remove('selected', 'correct-ans', 'wrong-ans');
+          if (j === q.ans) opt.classList.add('correct-ans');
+          else if (j === userAns && userAns !== q.ans) opt.classList.add('wrong-ans');
+        }
+      });
+
+      // Show all sections
+      document.querySelectorAll('.section-group').forEach(el => el.classList.add('active'));
+    }
+
+    // ============================================================
+    // GOOGLE SHEETS INTEGRATION
+    // ============================================================
+    // ⚠️  PASTE YOUR DEPLOYED WEB APP URL HERE (see setup guide below)
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztX0j1op96_7uHwplwgOXpQZnEnOj38OratmqAF8msaqYsSDmqWi2l3QDuMRHYJNcTOw/exec';
+
+    // --- Save result to Google Sheet (POST) ---
+    async function saveResult(name, roll, batch, score, pct) {
+      // Also keep local session backup
+      let local = JSON.parse(sessionStorage.getItem('examResults') || '[]');
+      local.push({ name, roll, batch, score, pct, time: new Date().toLocaleTimeString() });
+      local.sort((a, b) => b.score - a.score);
+      sessionStorage.setItem('examResults', JSON.stringify(local));
+
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+        console.warn('Google Sheets URL not configured. Showing local data only.');
+        return;
+      }
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',          // Apps Script requires no-cors
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, roll, batch, score, pct })
+        });
+        console.log('Result saved to Google Sheets ✅');
+      } catch (err) {
+        console.warn('Failed to save to Google Sheets:', err);
+      }
+    }
+
+    // --- Fetch leaderboard from Google Sheet (GET) ---
+    async function renderLeaderboard() {
+      const lbContent = document.getElementById('lbContent');
+      lbContent.innerHTML = '<p style="color:#aaa;text-align:center;padding:20px">⏳ Loading leaderboard from Google Sheets...</p>';
+
+      const rankIcons = ['🥇', '🥈', '🥉'];
+      const rankClass = ['gold', 'silver', 'bronze'];
+
+      // If URL not configured, fall back to session storage
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+        const local = JSON.parse(sessionStorage.getItem('examResults') || '[]');
+        renderRows(local, rankIcons, rankClass, lbContent, true);
+        return;
+      }
+
+      try {
+        const res = await fetch(APPS_SCRIPT_URL, { cache: 'no-cache' });
+        const data = await res.json();
+
+        if (data.status === 'success' && data.results.length > 0) {
+          renderRows(data.results, rankIcons, rankClass, lbContent, false);
+        } else {
+          lbContent.innerHTML = '<p style="color:#aaa;text-align:center;padding:20px">No results yet in Google Sheets.</p>';
+        }
+      } catch (err) {
+        console.warn('Google Sheets fetch failed, using local:', err);
+        const local = JSON.parse(sessionStorage.getItem('examResults') || '[]');
+        renderRows(local, rankIcons, rankClass, lbContent, true);
+      }
+    }
+
+    function renderRows(results, rankIcons, rankClass, lbContent, isLocal) {
+      if (!results || results.length === 0) {
+        lbContent.innerHTML = '<p style="color:#aaa;text-align:center;padding:20px">No results yet.</p>';
+        return;
+      }
+      const tag = isLocal
+        ? '<div style="text-align:center;font-size:0.75em;color:#E6A800;margin-bottom:10px">⚠️ Showing local session data (Google Sheets not connected)</div>'
+        : '<div style="text-align:center;font-size:0.75em;color:#4CAF50;margin-bottom:10px">✅ Live data from Google Sheets</div>';
+
+      lbContent.innerHTML = tag + results.slice(0, 20).map((r, i) => `
+        <div class="lb-row" style="${i === 0 ? 'background:#FFF8DC;border-color:#FFD700;' : ''}">
+          <div class="lb-rank ${rankClass[i] || ''}">${rankIcons[i] || (i + 1)}</div>
+          <div class="lb-name">${r.name} ${r.roll ? `<small style="color:#aaa">(${r.roll})</small>` : ''}
+            ${r.batch ? `<small style="color:#bbb;margin-left:4px">[${r.batch}]</small>` : ''}
+          </div>
+          <div class="lb-score" style="font-weight:900;color:${i === 0 ? '#E6A800' : '#555'}">${r.score}/100</div>
+          <div class="lb-pct">${r.pct || r.score}%</div>
+          <div style="font-size:0.78em;color:#bbb;margin-left:8px">${r.time || ''}</div>
+        </div>
+      `).join('');
+    }
+
+    function newExam() {
+      userAnswers.fill(null);
+      examStarted = false;
+      document.getElementById('resultsPanel').style.display = 'none';
+      document.getElementById('studentForm').style.display = 'block';
+      document.getElementById('studentName').value = '';
+      document.getElementById('studentId').value = '';
+      document.getElementById('examDuration').value = '90';
+    }
+  </script>
+</body>
+
+</html>
