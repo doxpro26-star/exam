@@ -680,7 +680,7 @@
       <div class="results-header">
         <h2 id="resultName"></h2>
         <div class="score-big" id="resultScore"></div>
-        <div class="score-label">out of 100</div>
+        <div class="score-label" id="scoreLabel">correct answers</div>
         <div class="grade-badge" id="resultGrade"></div>
       </div>
 
@@ -1004,6 +1004,7 @@
       document.getElementById('resultsPanel').style.display = 'block';
       document.getElementById('resultName').textContent = '🎓 ' + name;
       document.getElementById('resultScore').textContent = score;
+      document.getElementById('scoreLabel').textContent = `correct out of ${questions.length}`;
       document.getElementById('resultGrade').textContent = grade.g + ' — ' + grade.label;
 
       const correct = score;
