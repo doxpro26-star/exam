@@ -741,11 +741,11 @@
       { s: 2, n: 21, q: "Which function generates a sequence of numbers for a for loop?", opts: ["seq()", "list()", "range()", "count()"], ans: 2 },
       { s: 2, n: 22, q: "What is the output of: for i in range(3): print(i)", opts: ["1 2 3", "0 1 2 3", "0 1 2", "1 2"], ans: 2 },
       { s: 2, n: 23, q: "What does range(2, 8, 2) produce?", opts: ["2 4 6 8", "2 4 6", "0 2 4 6", "2 3 4 5 6 7"], ans: 1 },
-      { s: 2, n: 24, q: "Which built-in function returns both index and value in a for loop?", opts: ["index()", "zip()", "enumerate()", "iter()"], ans: 2 },
+      { s: 2, n: 24, q: "What is the output of len('Hello World')?", opts: ["10", "11", "12", "Error"], ans: 1 },
       { s: 2, n: 25, q: "What is the output?\nfor ch in 'abc':\n    print(ch, end='')", opts: ["a b c", "abc", "a\\nb\\nc", "Error"], ans: 1 },
       { s: 2, n: 26, q: "What is a list comprehension?", opts: ["A comment about a list", "A concise way to create lists using a for loop", "A function to sort lists", "A loop without a body"], ans: 1 },
       { s: 2, n: 27, q: "What is the output of: [x**2 for x in range(4)]", opts: ["[1, 4, 9, 16]", "[0, 1, 4, 9]", "[0, 1, 2, 3]", "[1, 2, 3, 4]"], ans: 1 },
-      { s: 2, n: 28, q: "How do you iterate over both keys and values of a dictionary?", opts: ["dict.keys()", "dict.values()", "dict.items()", "dict.all()"], ans: 2 },
+      { s: 2, n: 28, q: "What is the output of len([])?", opts: ["1", "0", "None", "Error"], ans: 1 },
       { s: 2, n: 29, q: "What is the output?\nfor i in range(5):\n    if i == 3:\n        break\nprint(i)", opts: ["4", "3", "2", "5"], ans: 1 },
       { s: 2, n: 30, q: "What does the 'else' clause after a for loop execute?", opts: ["When loop body runs once", "After the loop finishes without a break", "When the iterable is empty", "When break is hit"], ans: 1 },
 
@@ -771,14 +771,14 @@
       { s: 4, n: 47, q: "What does 'abc'.startswith('ab') return?", opts: ["False", "True", "None", "Error"], ans: 1 },
       { s: 4, n: 48, q: "What is the output of 'hello world'.title()?", opts: ["HELLO WORLD", "hello world", "Hello World", "Hello world"], ans: 2 },
       { s: 4, n: 49, q: "Which method checks if all characters are alphabetic?", opts: ["isalnum()", "isdigit()", "isalpha()", "ischar()"], ans: 2 },
-      { s: 4, n: 50, q: "What is the output of ' hello '.lstrip()?", opts: ["'hello '", "'hello'", "' hello'", "'hello '"], ans: 0 },
+      { s: 4, n: 50, q: "What is the output of '  hello '.strip()?", opts: ["'hello '", "'hello'", "' hello'", "'hello '"], ans: 1 },
 
       // SECTION 6: PYTHON HISTORY (51-55)
       { s: 5, n: 51, q: "Who created the Python programming language?", opts: ["Dennis Ritchie", "James Gosling", "Guido van Rossum", "Bjarne Stroustrup"], ans: 2 },
-      { s: 5, n: 52, q: "In which year was Python first released to the public?", opts: ["1985", "1989", "1991", "1995"], ans: 3 },
+      { s: 5, n: 52, q: "In which year was Python first released to the public?", opts: ["1985", "1989", "1991", "1995"], ans: 2 },
       { s: 5, n: 53, q: "Python's name was inspired by which TV show?", opts: ["Python the Movie", "Monty Python's Flying Circus", "The Python Chronicles", "Snake Tales"], ans: 1 },
       { s: 5, n: 54, q: "Which version introduced many modern Python features and became very popular?", opts: ["Python 1.0", "Python 2.5", "Python 3.0", "Python 2.7"], ans: 3 },
-      { s: 5, n: 55, q: "What was the main goal of Python's creator?", opts: ['Make the fastest language','Make a language that is easy to read and use','Build operating systems','Replace C language'], ans: 2 },
+      { s: 5, n: 55, q: "What was the main goal of Python's creator?", opts: ['Make the fastest language','Make a language that is easy to read and use','Build operating systems','Replace C language'], ans: 1},
     ];
 
     const sectionNames = [
