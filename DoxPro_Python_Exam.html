@@ -928,6 +928,20 @@
         startTimer();
         examStarted = true;
         enableTabChangeDetection();
+        
+        // Request fullscreen mode
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(err => {
+            console.log('Fullscreen request failed:', err);
+          });
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
       }, 800);
     }
 
@@ -1070,6 +1084,13 @@
       examStarted = false;
       tabChangeCount = 0;
       
+      // Exit fullscreen when exam is submitted
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(err => {
+          console.log('Fullscreen exit failed:', err);
+        });
+      }
+      
       // Show confirmation that exam was submitted
       alert('✅ Exam submitted successfully! Your responses have been saved.');
     }
@@ -1211,6 +1232,13 @@
     }
 
     function newExam() {
+      // Exit fullscreen when starting a new exam
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(err => {
+          console.log('Fullscreen exit failed:', err);
+        });
+      }
+      
       userAnswers.fill(null);
       examStarted = false;
       document.getElementById('resultsPanel').style.display = 'none';
