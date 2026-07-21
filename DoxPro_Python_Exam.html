@@ -601,7 +601,7 @@
       <div>
         <h1>🐍 DoxPro Python Mastery</h1>
         <p>Comprehensive MCQ Examination — Theory &amp; Coding</p>
-        <span class="badge" id="versionBadge">60 Questions · 7 Sections</span>
+        <span class="badge" id="versionBadge">70 Questions · 7 Sections</span>
       </div>
     </div>
   </div>
@@ -610,33 +610,33 @@
 
     <!-- STUDENT REGISTRATION -->
     <div id="studentForm">
-      <h2>📝 Student Details</h2>
+      <h2>👤 Candidate Information</h2>
       <div class="form-row">
         <div class="form-group">
           <label>Full Name *</label>
           <input type="text" id="studentName" placeholder="Enter your full name" oninput="resetNameField();" />
         </div>
         <div class="form-group">
-          <label>Roll Number / ID</label>
-          <input type="text" id="studentId" placeholder="e.g. 2024001" />
+          <label>Email Address *</label>
+          <input type="email" id="studentId" placeholder="your.email@example.com" />
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Class / Batch</label>
-          <input type="text" id="studentClass" placeholder="e.g. Python Batch A" />
+          <label>Phone Number</label>
+          <input type="tel" id="studentClass" placeholder="e.g. +91 98765 43210" />
         </div>
         <div class="form-group">
           <label>Duration (minutes) 🔒</label>
           <input type="number" id="examDuration" value="60" readonly title="Duration is fixed at 60 minutes" />
         </div>
       </div>
-      <button class="btn btn-primary" onclick="startExam()">🚀 Start Exam</button>
+      <button class="btn btn-primary" onclick="startExam()">🚀 Start Assessment</button>
       <div id="accessError" style="display:none;margin-top:14px;padding:14px 18px;background:#fff0f0;border:2px solid #f44336;border-radius:8px;color:#c0392b;font-weight:700;font-size:0.95em;">
-        ⛔ Access Denied — Your name is not on the authorized student list.
+        ⛔ Access Denied — Please check your details and try again.
       </div>
       <div id="versionInfo" style="display:none;margin-top:14px;padding:14px 18px;background:#f0fff4;border:2px solid #4CAF50;border-radius:8px;color:#1b6b34;font-weight:700;font-size:0.95em;">
-        ✅ Welcome! Your exam version has been assigned automatically.
+        ✅ Welcome! Your assessment is ready to begin.
       </div>
     </div>
 
@@ -647,7 +647,7 @@
         <span class="timer-value" id="timerDisplay">60:00</span>
         <span class="timer-label">Time Remaining</span>
         <span style="flex:1"></span>
-        <span id="answeredCount" style="font-size:0.9em;color:#888">0 / 60 answered</span>
+        <span id="answeredCount" style="font-size:0.9em;color:#888">0 / 70 answered</span>
       </div>
 
       <!-- PROGRESS -->
@@ -782,12 +782,22 @@
       { s: 5, n: 54, q: "How do you open a file for reading?", opts: ["open('file', 'r')", "read('file')", "file.open('r')", "open('file', 'w')"], ans: 0 },
       { s: 5, n: 55, q: "What is 'with' statement used for?", opts: ["Loops", "Resource management/cleanup", "Conditions", "Imports"], ans: 1 },
 
-      // SECTION 7: ADVANCED PYTHON CONCEPTS (56-60)
+      // SECTION 7: ADVANCED PYTHON CONCEPTS (56-70)
       { s: 6, n: 56, q: "What is the difference between '==' and 'is'?", opts: ["No difference", "== compares value, is compares identity", "is compares value", "Both are same"], ans: 1 },
       { s: 6, n: 57, q: "What are Python packages?", opts: ["Single files", "Collection of modules", "Data types", "Functions"], ans: 1 },
       { s: 6, n: 58, q: "What is pip?", opts: ["Python interpreter", "Package installer", "IDE", "Debugger"], ans: 1 },
       { s: 6, n: 59, q: "What is a virtual environment?", opts: ["Cloud storage", "Isolated Python environment", "Testing tool", "Web framework"], ans: 1 },
       { s: 6, n: 60, q: "What is PEP 8?", opts: ["Python version", "Style guide for Python code", "Testing framework", "Package manager"], ans: 1 },
+      { s: 6, n: 61, q: "What does __name__ == '__main__' check?", opts: ["Module name", "If script is run directly", "Class name", "Function name"], ans: 1 },
+      { s: 6, n: 62, q: "What is the purpose of requirements.txt?", opts: ["Code documentation", "List project dependencies", "Test cases", "Configuration file"], ans: 1 },
+      { s: 6, n: 63, q: "Which library is used for data manipulation?", opts: ["NumPy", "pandas", "matplotlib", "requests"], ans: 1 },
+      { s: 6, n: 64, q: "What is Django?", opts: ["Database", "Web framework", "Testing tool", "Data structure"], ans: 1 },
+      { s: 6, n: 65, q: "What is Flask?", opts: ["Microframework", "Database", "IDE", "Compiler"], ans: 0 },
+      { s: 6, n: 66, q: "Which module is used for HTTP requests?", opts: ["http", "requests", "urllib", "socket"], ans: 1 },
+      { s: 6, n: 67, q: "What is JSON?", opts: ["Programming language", "Data interchange format", "Database", "Python module"], ans: 1 },
+      { s: 6, n: 68, q: "What does REST API stand for?", opts: ["Real State API", "Representational State Transfer API", "Remote System API", "Request State API"], ans: 1 },
+      { s: 6, n: 69, q: "Which method is used to parse JSON in Python?", opts: ["json.read()", "json.loads()", "json.parse()", "json.get()"], ans: 1 },
+      { s: 6, n: 70, q: "What is the purpose of @staticmethod decorator?", opts: ["Create instance method", "Create method that doesn't need instance", "Create class variable", "Delete method"], ans: 1 },
     ];
 
     const sectionNames = [
@@ -803,7 +813,7 @@
     // ============================================================
     // STATE
     // ============================================================
-    let userAnswers = new Array(60).fill(null);
+    let userAnswers = new Array(70).fill(null);
     let timerInterval = null;
     let timeLeft = 3600;
     let examStarted = false;
@@ -898,7 +908,7 @@
       document.getElementById('accessError').style.display = 'none';
       document.getElementById('versionInfo').style.display = 'block';
       document.getElementById('studentName').style.borderColor = '#4CAF50';
-      document.getElementById('versionBadge').textContent = `60 Questions · 7 Sections · Version ${studentVersion}`;
+      document.getElementById('versionBadge').textContent = `70 Questions · 7 Sections · Version ${studentVersion}`;
 
       setTimeout(() => {
 
@@ -950,10 +960,10 @@
 
     function updateProgress() {
       const answered = userAnswers.filter(a => a !== null).length;
-      const pct = Math.round((answered / 60) * 100);
+      const pct = Math.round((answered / 70) * 100);
       document.getElementById('progressBar').style.width = pct + '%';
       document.getElementById('progressLabel').textContent = pct + '% complete';
-      document.getElementById('answeredCount').textContent = `${answered} / 60 answered`;
+      document.getElementById('answeredCount').textContent = `${answered} / 70 answered`;
     }
 
     function showSection(idx, btn) {
@@ -979,7 +989,7 @@
     // ============================================================
     async function submitExam() {
       const answered = userAnswers.filter(a => a !== null).length;
-      if (answered < 60 && !confirm(`You've answered ${answered}/60 questions. Submit anyway?`)) return;
+      if (answered < 70 && !confirm(`You've answered ${answered}/70 questions. Submit anyway?`)) return;
 
       clearInterval(timerInterval);
 
@@ -991,7 +1001,7 @@
       const name = document.getElementById('studentName').value.trim();
       const rollNo = document.getElementById('studentId').value.trim();
       const batch = document.getElementById('studentClass').value.trim();
-      const pct = Math.round((score / 60) * 100);
+      const pct = Math.round((score / 70) * 100);
 
       // Save to Google Sheet (await so data is sent before leaderboard loads)
       await saveResult(name, rollNo, batch, score, pct);
@@ -1143,7 +1153,7 @@
           <div class="lb-name">${r.name} ${r.roll ? `<small style="color:#aaa">(${r.roll})</small>` : ''}
             ${r.batch ? `<small style="color:#bbb;margin-left:4px">[${r.batch}]</small>` : ''}
           </div>
-          <div class="lb-score" style="font-weight:900;color:${i === 0 ? '#E6A800' : '#555'}">${r.score}/60</div>
+          <div class="lb-score" style="font-weight:900;color:${i === 0 ? '#E6A800' : '#555'}">${r.score}/70</div>
           <div class="lb-pct">${r.pct || r.score}%</div>
           <div style="font-size:0.78em;color:#bbb;margin-left:8px">${r.time || ''}</div>
         </div>
