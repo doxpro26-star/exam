@@ -819,6 +819,8 @@
     let examStarted = false;
     let currentSection = 0;
     let currentVersion = 'A';
+    let tabChangeCount = 0;
+    const MAX_TAB_CHANGES = 3;
 
     const VERSION_ORDERS = {
       'A': null,
@@ -922,8 +924,51 @@
         buildQuestions();
         startTimer();
         examStarted = true;
+        enableTabChangeDetection();
       }, 800);
     }
+
+    // ============================================================
+    // TAB CHANGE DETECTION
+    // ============================================================
+    function enableTabChangeDetection() {
+      document.addEventListener('visibilitychange', handleTabChange);
+      window.addEventListener('blur', handleWindowBlur);
+    }
+
+    function disableTabChangeDetection() {
+      document.removeEventListener('visibilitychange', handleTabChange);
+      window.removeEventListener('blur', handleWindowBlur);
+    }
+
+    function handleTabChange() {
+      if (!examStarted) return;
+      
+      if (document.hidden) {
+        tabChangeCount++;
+        const remaining = MAX_TAB_CHANGES - tabChangeCount;
+        
+        if (tabChangeCount >= MAX_TAB_CHANGES) {
+          alert('⚠️ You have switched tabs 3 times. Your exam will be auto-submitted now!');
+          disableTabChangeDetection();
+          submitExam();
+        } else {
+          alert(`⚠️ WARNING ${tabChangeCount}/${MAX_TAB_CHANGES}: Do not switch tabs! ${remaining} warning(s) remaining before auto-submit.`);
+        }
+      }
+    }
+
+    function handleWindowBlur() {
+      // Additional check for window focus loss
+      if (!examStarted || document.hidden) return;
+      
+      setTimeout(() => {
+        if (!document.hasFocus() && examStarted) {
+          handleTabChange();
+        }
+      }, 100);
+    }
+    // ============================================================
 
     function startTimer() {
       updateTimerDisplay();
@@ -992,6 +1037,7 @@
       if (answered < 70 && !confirm(`You've answered ${answered}/70 questions. Submit anyway?`)) return;
 
       clearInterval(timerInterval);
+      disableTabChangeDetection();
 
       let score = 0;
       getOrderedQuestions().forEach((q, i) => {
@@ -1013,6 +1059,17 @@
       
       // Reset form fields
       document.getElementById('studentName').value = '';
+      document.getElementById('studentId').value = '';
+      document.getElementById('studentClass').value = '';
+      
+      // Reset exam state
+      userAnswers.fill(null);
+      examStarted = false;
+      tabChangeCount = 0;
+      
+      // Show confirmation that exam was submitted
+      alert('✅ Exam submitted successfully! Your responses have been saved.');
+    }
       document.getElementById('studentId').value = '';
       document.getElementById('studentClass').value = '';
       
