@@ -1000,26 +1000,15 @@
     }
 
     function showResults(name, score, pct, answered) {
-      const grade = getGrade(pct);
-      document.getElementById('resultsPanel').style.display = 'block';
-      document.getElementById('resultName').textContent = '🎓 ' + name;
-      document.getElementById('resultScore').textContent = score;
-      document.getElementById('scoreLabel').textContent = `correct out of ${questions.length}`;
-      document.getElementById('resultGrade').textContent = grade.g + ' — ' + grade.label;
-
-      const correct = score;
-      const wrong = answered - score;
-      const skipped = 55 - answered;
-
-      document.getElementById('statsGrid').innerHTML = `
-    <div class="stat-card"><div class="stat-num" style="color:#4CAF50">${correct}</div><div class="stat-label">Correct ✅</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:#f44336">${wrong}</div><div class="stat-label">Wrong ❌</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:#888">${skipped}</div><div class="stat-label">Skipped ⏭️</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:#FFD700">${pct}%</div><div class="stat-label">Percentage</div></div>
-  `;
-
-      renderLeaderboard();
-      window.scrollTo(0, 0);
+      // Results display disabled - no results shown after exam
+      // Automatically reset to initial state
+      document.getElementById('resultsPanel').style.display = 'none';
+      document.getElementById('studentForm').style.display = 'block';
+      document.getElementById('studentName').value = '';
+      document.getElementById('studentRollNo').value = '';
+      document.getElementById('studentBatch').value = '';
+      userAnswers.fill(null);
+      examStarted = false;
     }
 
     // ============================================================
