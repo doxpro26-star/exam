@@ -882,8 +882,10 @@
     // ============================================================
     // EXAM CONTROLS
     // ============================================================
-    const ALLOWED_STUDENTS = ["candidate1", "candidate2", "candidate3", "candidate4"];
-    const VERSION_MAP = {"candidate1": "A", "candidate2": "B", "candidate3": "C", "candidate4": "D"};
+    // VERSION SYSTEM - All candidates get Version A by default
+    // ============================================================
+    const ALLOWED_STUDENTS = []; // No whitelist - open to all
+    const VERSION_MAP = {}; // Not used when open to all
 
     function resetNameField() {
       document.getElementById('accessError').style.display = 'none';
@@ -892,7 +894,8 @@
     }
 
     function getStudentVersion(name) {
-      return VERSION_MAP[name.trim().toLowerCase()] || null;
+      // Allow all candidates - return version A for everyone
+      return 'A';
     }
 
     function startExam() {
