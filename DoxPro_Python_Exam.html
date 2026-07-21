@@ -1073,16 +1073,6 @@
       // Show confirmation that exam was submitted
       alert('✅ Exam submitted successfully! Your responses have been saved.');
     }
-      document.getElementById('studentId').value = '';
-      document.getElementById('studentClass').value = '';
-      
-      // Reset exam state
-      userAnswers.fill(null);
-      examStarted = false;
-      
-      // Show confirmation that exam was submitted
-      alert('✅ Exam submitted successfully! Your responses have been saved.');
-    }
 
     function getGrade(pct) {
       if (pct >= 90) return { g: 'A+', label: 'Outstanding! 🏆' };
