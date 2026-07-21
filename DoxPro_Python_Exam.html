@@ -986,8 +986,22 @@
       // Save to Google Sheet (await so data is sent before leaderboard loads)
       await saveResult(name, rollNo, batch, score, pct);
 
+      // Hide exam panel and results - show form instead
       document.getElementById('examPanel').style.display = 'none';
-      showResults(name, score, pct, answered);
+      document.getElementById('resultsPanel').style.display = 'none';
+      document.getElementById('studentForm').style.display = 'block';
+      
+      // Reset form fields
+      document.getElementById('studentName').value = '';
+      document.getElementById('studentId').value = '';
+      document.getElementById('studentClass').value = '';
+      
+      // Reset exam state
+      userAnswers.fill(null);
+      examStarted = false;
+      
+      // Show confirmation that exam was submitted
+      alert('✅ Exam submitted successfully! Your responses have been saved.');
     }
 
     function getGrade(pct) {
@@ -1005,8 +1019,9 @@
       document.getElementById('resultsPanel').style.display = 'none';
       document.getElementById('studentForm').style.display = 'block';
       document.getElementById('studentName').value = '';
-      document.getElementById('studentRollNo').value = '';
-      document.getElementById('studentBatch').value = '';
+      document.getElementById('studentId').value = '';
+      document.getElementById('studentClass').value = '';
+      document.getElementById('examPanel').style.display = 'none';
       userAnswers.fill(null);
       examStarted = false;
     }
