@@ -713,89 +713,89 @@
     // QUESTION DATA
     // ============================================================
     const questions = [
-      // SECTION 1: CONDITIONAL STATEMENTS (1-10)
-      { s: 0, n: 1, q: "Which keyword is used to start an if-else ladder in Python?", opts: ["elif", "else", "if", "switch"], ans: 2 },
-      { s: 0, n: 2, q: "What is the correct syntax for an if statement in Python?", opts: ["if x > 5 then:", "if (x > 5):", "if x > 5:", "if x > 5 do:"], ans: 2 },
-      { s: 0, n: 3, q: "What is the output?\nx = 10\nif x > 5:\n    print('A')\nelse:\n    print('B')", opts: ["B", "A", "AB", "Error"], ans: 1 },
-      { s: 0, n: 4, q: "Which keyword is Python's equivalent of 'else if'?", opts: ["elseif", "else if", "elif", "elsif"], ans: 2 },
-      { s: 0, n: 5, q: "What is the ternary (one-line) if-else syntax in Python?", opts: ["x if cond else y", "cond ? x : y", "if cond then x else y", "x when cond else y"], ans: 0 },
-      { s: 0, n: 6, q: "What is the output?\nif False:\n    print('A')\nelse:\n    print('B')", opts: ["A", "B", "A B", "Error"], ans: 1 },
-      { s: 0, n: 7, q: "What is the output?\nx = 0\nif x:\n    print('True')\nelse:\n    print('False')", opts: ["True", "False", "0", "Error"], ans: 1 },
-      { s: 0, n: 8, q: "Which operator is used to check equality in an if condition?", opts: ["=", "==", "!=", ":"], ans: 1 },
-      { s: 0, n: 9, q: "What is the output?\nx = 15\nif x < 10:\n    print('Small')\nelif x < 20:\n    print('Medium')\nelse:\n    print('Large')", opts: ["Small", "Medium", "Large", "Error"], ans: 1 },
-      { s: 0, n: 10, q: "Which logical operator returns True only if both conditions are True?", opts: ["or", "not", "and", "xor"], ans: 2 },
+      // SECTION 1: PYTHON BASICS & DATA TYPES (1-10)
+      { s: 0, n: 1, q: "Which of the following is a mutable data type in Python?", opts: ["tuple", "string", "list", "integer"], ans: 2 },
+      { s: 0, n: 2, q: "What is the output of: type(5/2)?", opts: ["<class 'int'>", "<class 'float'>", "<class 'double'>", "<class 'decimal'>"], ans: 1 },
+      { s: 0, n: 3, q: "Which operator is used for floor division in Python?", opts: ["/", "//", "%", "**"], ans: 1 },
+      { s: 0, n: 4, q: "What is the correct way to create a dictionary?", opts: ["dict = {}", "dict = []", "dict = ()", "dict = <>"], ans: 0 },
+      { s: 0, n: 5, q: "What does len([1, 2, [3, 4]]) return?", opts: ["4", "3", "2", "5"], ans: 1 },
+      { s: 0, n: 6, q: "Which keyword is used to create a function?", opts: ["func", "define", "def", "function"], ans: 2 },
+      { s: 0, n: 7, q: "What is the output of: bool('')?", opts: ["True", "False", "Error", "None"], ans: 1 },
+      { s: 0, n: 8, q: "Which method converts a string to lowercase?", opts: ["toLower()", "lowercase()", "lower()", "downcase()"], ans: 2 },
+      { s: 0, n: 9, q: "What is the output of: print(10 == '10')?", opts: ["True", "False", "Error", "1"], ans: 1 },
+      { s: 0, n: 10, q: "Which of these is NOT a valid variable name?", opts: ["_var", "var1", "1var", "var_1"], ans: 2 },
 
-      // SECTION 2: WHILE LOOP (11-20)
-      { s: 1, n: 11, q: "Which loop continues as long as a condition is True?", opts: ["for", "while", "do-while", "loop"], ans: 1 },
-      { s: 1, n: 12, q: "What is the output?\ni = 0\nwhile i < 3:\n    print(i)\n    i += 1", opts: ["0 1 2 3", "0 1 2", "1 2 3", "0 1"], ans: 1 },
-      { s: 1, n: 13, q: "What creates an infinite while loop?", opts: ["while False:", "while 0:", "while True:", "while None:"], ans: 2 },
-      { s: 1, n: 14, q: "Which keyword exits a while loop immediately?", opts: ["exit", "stop", "break", "end"], ans: 2 },
-      { s: 1, n: 15, q: "What does 'continue' do inside a while loop?", opts: ["Exits the loop", "Skips current iteration and continues", "Pauses the loop", "Restarts from beginning"], ans: 1 },
-      { s: 1, n: 16, q: "What is the output?\nx = 5\nwhile x > 0:\n    x -= 2\nprint(x)", opts: ["1", "-1", "0", "3"], ans: 1 },
-      { s: 1, n: 17, q: "What is the 'else' clause in a while loop used for?", opts: ["Runs if loop body runs once", "Runs when condition becomes False without break", "Runs if condition is never True", "Not valid in while loops"], ans: 1 },
-      { s: 1, n: 18, q: "How many times does 'Hello' print?\ni = 1\nwhile i <= 4:\n    print('Hello')\n    i += 1", opts: ["3", "4", "5", "Infinite"], ans: 1 },
-      { s: 1, n: 19, q: "What is the output?\nn = 10\nwhile n > 0:\n    n //= 2\nprint(n)", opts: ["1", "0", "2", "5"], ans: 1 },
-      { s: 1, n: 20, q: "What happens if the while loop condition is False at the start?", opts: ["Runs once", "Runs forever", "Loop body never executes", "Raises an error"], ans: 2 },
+      // SECTION 2: CONTROL FLOW & LOOPS (11-20)
+      { s: 1, n: 11, q: "What keyword is used for conditional execution?", opts: ["if", "when", "check", "condition"], ans: 0 },
+      { s: 1, n: 12, q: "Which loop is used to iterate over a sequence?", opts: ["while", "for", "loop", "iterate"], ans: 1 },
+      { s: 1, n: 13, q: "What does 'break' do in a loop?", opts: ["Pauses loop", "Exits loop immediately", "Skips iteration", "Continues loop"], ans: 1 },
+      { s: 1, n: 14, q: "What does 'continue' do in a loop?", opts: ["Exits loop", "Skips current iteration", "Pauses loop", "Restarts loop"], ans: 1 },
+      { s: 1, n: 15, q: "What is the output?\nfor i in range(3):\n    print(i, end=' ')", opts: ["1 2 3", "0 1 2", "0 1 2 3", "1 2"], ans: 1 },
+      { s: 1, n: 16, q: "What does range(2, 10, 3) generate?", opts: ["2 5 8", "2 5 8 11", "3 6 9", "2 4 6 8"], ans: 0 },
+      { s: 1, n: 17, q: "Which is the ternary operator syntax?", opts: ["if x then y else z", "x if condition else y", "condition ? x : y", "x when condition else y"], ans: 1 },
+      { s: 1, n: 18, q: "What is the output?\nx = 5\nif x > 10:\n    print('A')\nelse:\n    print('B')", opts: ["A", "B", "AB", "Error"], ans: 1 },
+      { s: 1, n: 19, q: "What does 'pass' statement do?", opts: ["Exits function", "Does nothing (placeholder)", "Raises error", "Returns None"], ans: 1 },
+      { s: 1, n: 20, q: "What is the output of: list(range(5))?", opts: ["[1,2,3,4,5]", "[0,1,2,3,4]", "[0,1,2,3,4,5]", "range(0,5)"], ans: 1 },
 
-      // SECTION 3: FOR LOOP (21-30)
-      { s: 2, n: 21, q: "Which function generates a sequence of numbers for a for loop?", opts: ["seq()", "list()", "range()", "count()"], ans: 2 },
-      { s: 2, n: 22, q: "What is the output of: for i in range(3): print(i)", opts: ["1 2 3", "0 1 2 3", "0 1 2", "1 2"], ans: 2 },
-      { s: 2, n: 23, q: "What does range(2, 8, 2) produce?", opts: ["2 4 6 8", "2 4 6", "0 2 4 6", "2 3 4 5 6 7"], ans: 1 },
-      { s: 2, n: 24, q: "What is the output of len('Hello World')?", opts: ["10", "11", "12", "Error"], ans: 1 },
-      { s: 2, n: 25, q: "What is the output?\nfor ch in 'abc':\n    print(ch, end='')", opts: ["a b c", "abc", "a\\nb\\nc", "Error"], ans: 1 },
-      { s: 2, n: 26, q: "What is a list comprehension?", opts: ["A comment about a list", "A concise way to create lists using a for loop", "A function to sort lists", "A loop without a body"], ans: 1 },
-      { s: 2, n: 27, q: "What is the output of: [x**2 for x in range(4)]", opts: ["[1, 4, 9, 16]", "[0, 1, 4, 9]", "[0, 1, 2, 3]", "[1, 2, 3, 4]"], ans: 1 },
-      { s: 2, n: 28, q: "What is the output of len([])?", opts: ["1", "0", "None", "Error"], ans: 1 },
-      { s: 2, n: 29, q: "What is the output?\nfor i in range(5):\n    if i == 3:\n        break\nprint(i)", opts: ["4", "3", "2", "5"], ans: 1 },
-      { s: 2, n: 30, q: "What does the 'else' clause after a for loop execute?", opts: ["When loop body runs once", "After the loop finishes without a break", "When the iterable is empty", "When break is hit"], ans: 1 },
+      // SECTION 3: FUNCTIONS & MODULES (21-30)
+      { s: 2, n: 21, q: "What is *args used for in functions?", opts: ["Keyword arguments", "Variable positional arguments", "Default arguments", "Named arguments"], ans: 1 },
+      { s: 2, n: 22, q: "What is **kwargs used for?", opts: ["Variable keyword arguments", "Positional arguments", "Array arguments", "Required arguments"], ans: 0 },
+      { s: 2, n: 23, q: "What does return statement do?", opts: ["Prints value", "Exits and returns value", "Saves value", "Deletes value"], ans: 1 },
+      { s: 2, n: 24, q: "What is a lambda function?", opts: ["Large function", "Anonymous function", "Loop function", "Class method"], ans: 1 },
+      { s: 2, n: 25, q: "What is the output?\ndef func(a, b=5):\n    return a + b\nprint(func(10))", opts: ["5", "10", "15", "Error"], ans: 2 },
+      { s: 2, n: 26, q: "How do you import a specific function from a module?", opts: ["import func from module", "from module import func", "module.import(func)", "import module.func"], ans: 1 },
+      { s: 2, n: 27, q: "What is the scope of a variable defined inside a function?", opts: ["Global", "Local", "Universal", "Module"], ans: 1 },
+      { s: 2, n: 28, q: "What is a decorator?", opts: ["Function modifier", "Class decorator", "Variable type", "Loop enhancer"], ans: 0 },
+      { s: 2, n: 29, q: "What does yield keyword do?", opts: ["Returns value", "Creates generator", "Exits function", "Raises exception"], ans: 1 },
+      { s: 2, n: 30, q: "What is recursion?", opts: ["Loop", "Function calling itself", "Import statement", "Error handling"], ans: 1 },
 
-      // SECTION 4: FUNCTIONS (31-40)
-      { s: 3, n: 31, q: "Which keyword defines a function in Python?", opts: ["func", "function", "def", "define"], ans: 2 },
-      { s: 3, n: 32, q: "What is the output?\ndef greet(name):\n    return 'Hello ' + name\nprint(greet('Alice'))", opts: ["Hello", "Hello Alice", "Hello Alice()", "Error"], ans: 1 },
-      { s: 3, n: 33, q: "What does 'return' do in a function?", opts: ["Exits and prints output", "Exits and returns a value", "Loops back to start", "Raises an error"], ans: 1 },
-      { s: 3, n: 34, q: "What are default parameters?", opts: ["Parameters that must be provided", "Parameters with default values if not provided", "Parameters that reset each time", "Parameters that are global"], ans: 1 },
-      { s: 3, n: 35, q: "What is the output?\ndef add(a, b=5):\n    return a + b\nprint(add(10))", opts: ["5", "10", "15", "Error"], ans: 2 },
-      { s: 3, n: 36, q: "What are *args used for?", opts: ["Keyword arguments", "Variable number of positional arguments", "Array arguments", "Default arguments"], ans: 1 },
-      { s: 3, n: 37, q: "What are **kwargs used for?", opts: ["Variable positional args", "Variable keyword arguments", "Squared arguments", "Keyword and array"], ans: 1 },
-      { s: 3, n: 38, q: "What is a lambda function?", opts: ["Anonymous single-line function", "Large function", "Loop function", "Load function"], ans: 0 },
-      { s: 3, n: 39, q: "What is the output?\nf = lambda x: x * 2\nprint(f(5))", opts: ["5", "10", "25", "Error"], ans: 1 },
-      { s: 3, n: 40, q: "What is the scope of a variable defined inside a function?", opts: ["Global", "Local to that function", "Available everywhere", "Only in loops"], ans: 1 },
+      // SECTION 4: DATA STRUCTURES (31-40)
+      { s: 3, n: 31, q: "Which method adds element to end of list?", opts: ["add()", "push()", "append()", "insert()"], ans: 2 },
+      { s: 3, n: 32, q: "What does list.pop() do?", opts: ["Removes and returns last element", "Adds element", "Clears list", "Sorts list"], ans: 0 },
+      { s: 3, n: 33, q: "What is a tuple?", opts: ["Mutable sequence", "Immutable sequence", "Dictionary type", "Set type"], ans: 1 },
+      { s: 3, n: 34, q: "What is the difference between list and tuple?", opts: ["No difference", "List is mutable, tuple is immutable", "Tuple is faster", "List is ordered"], ans: 1 },
+      { s: 3, n: 35, q: "How do you create an empty set?", opts: ["{}", "set()", "[]", "()"], ans: 1 },
+      { s: 3, n: 36, q: "What does dict.get('key') do if key doesn't exist?", opts: ["Raises error", "Returns None", "Returns 0", "Returns ''"], ans: 1 },
+      { s: 3, n: 37, q: "What is list comprehension?", opts: ["List comment", "Concise way to create lists", "List sorting", "List copying"], ans: 1 },
+      { s: 3, n: 38, q: "What is the output: [x*2 for x in range(3)]?", opts: ["[0,1,2]", "[0,2,4]", "[2,4,6]", "[1,2,3]"], ans: 1 },
+      { s: 3, n: 39, q: "Which is faster for membership test?", opts: ["list", "tuple", "set", "dict"], ans: 2 },
+      { s: 3, n: 40, q: "What does dict.keys() return?", opts: ["List", "Tuple", "Dict_keys view", "Set"], ans: 2 },
 
-      // SECTION 5: OBJECT-ORIENTED PROGRAMMING (41-50)
-      { s: 4, n: 41, q: "What is a class in Python?", opts: ["A type of loop", "A blueprint for creating objects", "A function container", "A storage location"], ans: 1 },
-      { s: 4, n: 42, q: "What does '__init__' do in a class?", opts: ["Ends the class", "Initializes object instance variables", "Imports modules", "Defines class variables"], ans: 1 },
-      { s: 4, n: 43, q: "What is 'self' in a class method?", opts: ["A keyword", "Reference to current object instance", "A built-in function", "A loop variable"], ans: 1 },
-      { s: 4, n: 44, q: "What is inheritance in OOP?", opts: ["Getting parent's errors", "Child class acquiring parent class properties", "Creating new classes", "Sharing variables"], ans: 1 },
-      { s: 4, n: 45, q: "What is polymorphism?", opts: ["Multiple objects", "One thing having many forms", "Class inheritance", "Function overloading"], ans: 1 },
-      { s: 4, n: 46, q: "What is encapsulation?", opts: ["Wrapping code in functions", "Bundling data with methods controlling access", "Creating child classes", "Defining global variables"], ans: 1 },
-      { s: 4, n: 47, q: "What does '__name__' refer to?", opts: ["Variable name", "Function name", "Class name", "Current module name"], ans: 3 },
-      { s: 4, n: 48, q: "What is a constructor?", opts: ["Removes objects", "Special method that initializes objects", "Combines objects", "Destroys data"], ans: 1 },
-      { s: 4, n: 49, q: "What is the difference between class and instance variables?", opts: ["None", "Class variables shared, instance variables unique per object", "Instance faster", "Class is smaller"], ans: 1 },
-      { s: 4, n: 50, q: "What is method overriding?", opts: ["Loop method", "Child class redefining parent method", "Changing method name", "Creating new methods"], ans: 1 },
+      // SECTION 5: OOP (OBJECT-ORIENTED PROGRAMMING) (41-50)
+      { s: 4, n: 41, q: "What keyword is used to create a class?", opts: ["class", "object", "struct", "define"], ans: 0 },
+      { s: 4, n: 42, q: "What is __init__ method?", opts: ["Destructor", "Constructor/Initializer", "Static method", "Class method"], ans: 1 },
+      { s: 4, n: 43, q: "What does 'self' represent?", opts: ["Class name", "Current instance", "Parent class", "Module name"], ans: 1 },
+      { s: 4, n: 44, q: "What is inheritance?", opts: ["Creating objects", "Child class inheriting parent properties", "Data hiding", "Method overloading"], ans: 1 },
+      { s: 4, n: 45, q: "What is polymorphism?", opts: ["Multiple inheritance", "Same interface, different implementations", "Data encapsulation", "Object creation"], ans: 1 },
+      { s: 4, n: 46, q: "What is encapsulation?", opts: ["Bundling data and methods", "Creating classes", "Inheritance", "Polymorphism"], ans: 0 },
+      { s: 4, n: 47, q: "How do you create private attribute?", opts: ["private name", "_name", "__name", "name_"], ans: 2 },
+      { s: 4, n: 48, q: "What is method overriding?", opts: ["Creating new method", "Redefining parent method in child", "Deleting method", "Hiding method"], ans: 1 },
+      { s: 4, n: 49, q: "What is the difference between class and instance variables?", opts: ["No difference", "Class shared by all, instance unique per object", "Instance is faster", "Class is private"], ans: 1 },
+      { s: 4, n: 50, q: "What is super() used for?", opts: ["Delete parent", "Call parent class methods", "Create superclass", "Override method"], ans: 1 },
 
-      // SECTION 6: ADVANCED CONCEPTS (51-55)
-      { s: 5, n: 51, q: "What is a decorator in Python?", opts: ["Design pattern", "Function that modifies another function", "Class modifier", "Loop operator"], ans: 1 },
-      { s: 5, n: 52, q: "What does 'with' statement do?", opts: ["Conditional check", "Resource management and cleanup", "Loop iteration", "Variable declaration"], ans: 1 },
-      { s: 5, n: 53, q: "What is the difference between '==' and 'is'?", opts: ["No difference", "== compares value, is compares identity", "is is faster", "Both are same"], ans: 1 },
-      { s: 5, n: 54, q: "What is a list comprehension with conditions?\n[x for x in range(10) if x % 2 == 0]", opts: ["Lists all numbers", "Lists even numbers 0-9", "Lists odd numbers", "Error syntax"], ans: 1 },
-      { s: 5, n: 55, q: "What is the output of: tuple([1, 2, 3])?", opts: ["[1, 2, 3]", "(1, 2, 3)", "[1, 2, 3,]", "Error"], ans: 1},
+      // SECTION 6: EXCEPTION HANDLING & FILE I/O (51-55)
+      { s: 5, n: 51, q: "Which block is used to handle exceptions?", opts: ["catch", "except", "error", "handle"], ans: 1 },
+      { s: 5, n: 52, q: "What is the purpose of try-except?", opts: ["Loop control", "Error handling", "File operations", "Import modules"], ans: 1 },
+      { s: 5, n: 53, q: "What does 'finally' block do?", opts: ["Handles errors", "Always executes", "Skips errors", "Raises errors"], ans: 1 },
+      { s: 5, n: 54, q: "How do you open a file for reading?", opts: ["open('file', 'r')", "read('file')", "file.open('r')", "open('file', 'w')"], ans: 0 },
+      { s: 5, n: 55, q: "What is 'with' statement used for?", opts: ["Loops", "Resource management/cleanup", "Conditions", "Imports"], ans: 1 },
 
-      // SECTION 7: PROFESSIONAL PYTHON DEVELOPER (56-60)
-      { s: 6, n: 56, q: "What is PEP 8 in Python?", opts: ["A Python module", "Style guide for Python code", "Python 8.0 version", "Performance enhancement"], ans: 1 },
-      { s: 6, n: 57, q: "What module is used for unit testing in Python?", opts: ["pytest", "test", "unittest", "check"], ans: 2 },
-      { s: 6, n: 58, q: "What is the purpose of virtual environments?", opts: ["Run Python faster", "Isolate project dependencies", "Store backups", "Cache files"], ans: 1 },
-      { s: 6, n: 59, q: "What does 'git' do in Python projects?", opts: ["Import modules", "Version control system", "Performance profiling", "Debugging"], ans: 1 },
-      { s: 6, n: 60, q: "What is the difference between mutable and immutable types?", opts: ["Speed difference", "Mutable can change, immutable cannot", "Memory usage only", "No difference"], ans: 1},
+      // SECTION 7: ADVANCED PYTHON CONCEPTS (56-60)
+      { s: 6, n: 56, q: "What is the difference between '==' and 'is'?", opts: ["No difference", "== compares value, is compares identity", "is compares value", "Both are same"], ans: 1 },
+      { s: 6, n: 57, q: "What are Python packages?", opts: ["Single files", "Collection of modules", "Data types", "Functions"], ans: 1 },
+      { s: 6, n: 58, q: "What is pip?", opts: ["Python interpreter", "Package installer", "IDE", "Debugger"], ans: 1 },
+      { s: 6, n: 59, q: "What is a virtual environment?", opts: ["Cloud storage", "Isolated Python environment", "Testing tool", "Web framework"], ans: 1 },
+      { s: 6, n: 60, q: "What is PEP 8?", opts: ["Python version", "Style guide for Python code", "Testing framework", "Package manager"], ans: 1 },
     ];
 
     const sectionNames = [
-      "Section 1: Conditional Statements",
-      "Section 2: While Loop",
-      "Section 3: For Loop",
-      "Section 4: Functions",
-      "Section 5: Object-Oriented Programming",
-      "Section 6: Advanced Concepts",
-      "Section 7: Professional Python Developer"
+      "Section 1: Python Basics & Data Types",
+      "Section 2: Control Flow & Loops",
+      "Section 3: Functions & Modules",
+      "Section 4: Data Structures",
+      "Section 5: OOP (Object-Oriented Programming)",
+      "Section 6: Exception Handling & File I/O",
+      "Section 7: Advanced Python Concepts"
     ];
 
     // ============================================================
