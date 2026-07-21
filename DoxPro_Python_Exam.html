@@ -601,7 +601,7 @@
       <div>
         <h1>🐍 DoxPro Python Mastery</h1>
         <p>Comprehensive MCQ Examination — Theory &amp; Coding</p>
-        <span class="badge" id="versionBadge">55 Questions · 6 Sections</span>
+        <span class="badge" id="versionBadge">60 Questions · 7 Sections</span>
       </div>
     </div>
   </div>
@@ -628,7 +628,7 @@
         </div>
         <div class="form-group">
           <label>Duration (minutes) 🔒</label>
-          <input type="number" id="examDuration" value="30" readonly title="Duration is fixed at 30 minutes" />
+          <input type="number" id="examDuration" value="60" readonly title="Duration is fixed at 60 minutes" />
         </div>
       </div>
       <button class="btn btn-primary" onclick="startExam()">🚀 Start Exam</button>
@@ -647,7 +647,7 @@
         <span class="timer-value" id="timerDisplay">60:00</span>
         <span class="timer-label">Time Remaining</span>
         <span style="flex:1"></span>
-        <span id="answeredCount" style="font-size:0.9em;color:#888">0 / 55 answered</span>
+        <span id="answeredCount" style="font-size:0.9em;color:#888">0 / 60 answered</span>
       </div>
 
       <!-- PROGRESS -->
@@ -779,6 +779,13 @@
       { s: 5, n: 53, q: "What is the difference between '==' and 'is'?", opts: ["No difference", "== compares value, is compares identity", "is is faster", "Both are same"], ans: 1 },
       { s: 5, n: 54, q: "What is a list comprehension with conditions?\n[x for x in range(10) if x % 2 == 0]", opts: ["Lists all numbers", "Lists even numbers 0-9", "Lists odd numbers", "Error syntax"], ans: 1 },
       { s: 5, n: 55, q: "What is the output of: tuple([1, 2, 3])?", opts: ["[1, 2, 3]", "(1, 2, 3)", "[1, 2, 3,]", "Error"], ans: 1},
+
+      // SECTION 7: PROFESSIONAL PYTHON DEVELOPER (56-60)
+      { s: 6, n: 56, q: "What is PEP 8 in Python?", opts: ["A Python module", "Style guide for Python code", "Python 8.0 version", "Performance enhancement"], ans: 1 },
+      { s: 6, n: 57, q: "What module is used for unit testing in Python?", opts: ["pytest", "test", "unittest", "check"], ans: 2 },
+      { s: 6, n: 58, q: "What is the purpose of virtual environments?", opts: ["Run Python faster", "Isolate project dependencies", "Store backups", "Cache files"], ans: 1 },
+      { s: 6, n: 59, q: "What does 'git' do in Python projects?", opts: ["Import modules", "Version control system", "Performance profiling", "Debugging"], ans: 1 },
+      { s: 6, n: 60, q: "What is the difference between mutable and immutable types?", opts: ["Speed difference", "Mutable can change, immutable cannot", "Memory usage only", "No difference"], ans: 1},
     ];
 
     const sectionNames = [
@@ -787,15 +794,16 @@
       "Section 3: For Loop",
       "Section 4: Functions",
       "Section 5: Object-Oriented Programming",
-      "Section 6: Advanced Concepts"
+      "Section 6: Advanced Concepts",
+      "Section 7: Professional Python Developer"
     ];
 
     // ============================================================
     // STATE
     // ============================================================
-    let userAnswers = new Array(55).fill(null);
+    let userAnswers = new Array(60).fill(null);
     let timerInterval = null;
-    let timeLeft = 1800;
+    let timeLeft = 3600;
     let examStarted = false;
     let currentSection = 0;
     let currentVersion = 'A';
@@ -888,7 +896,7 @@
       document.getElementById('accessError').style.display = 'none';
       document.getElementById('versionInfo').style.display = 'block';
       document.getElementById('studentName').style.borderColor = '#4CAF50';
-      document.getElementById('versionBadge').textContent = `55 Questions · 6 Sections · Version ${studentVersion}`;
+      document.getElementById('versionBadge').textContent = `60 Questions · 7 Sections · Version ${studentVersion}`;
 
       setTimeout(() => {
 
@@ -940,10 +948,10 @@
 
     function updateProgress() {
       const answered = userAnswers.filter(a => a !== null).length;
-      const pct = Math.round((answered / 55) * 100);
+      const pct = Math.round((answered / 60) * 100);
       document.getElementById('progressBar').style.width = pct + '%';
       document.getElementById('progressLabel').textContent = pct + '% complete';
-      document.getElementById('answeredCount').textContent = `${answered} / 55 answered`;
+      document.getElementById('answeredCount').textContent = `${answered} / 60 answered`;
     }
 
     function showSection(idx, btn) {
@@ -969,7 +977,7 @@
     // ============================================================
     async function submitExam() {
       const answered = userAnswers.filter(a => a !== null).length;
-      if (answered < 55 && !confirm(`You've answered ${answered}/55 questions. Submit anyway?`)) return;
+      if (answered < 60 && !confirm(`You've answered ${answered}/60 questions. Submit anyway?`)) return;
 
       clearInterval(timerInterval);
 
@@ -981,7 +989,7 @@
       const name = document.getElementById('studentName').value.trim();
       const rollNo = document.getElementById('studentId').value.trim();
       const batch = document.getElementById('studentClass').value.trim();
-      const pct = Math.round((score / 55) * 100);
+      const pct = Math.round((score / 60) * 100);
 
       // Save to Google Sheet (await so data is sent before leaderboard loads)
       await saveResult(name, rollNo, batch, score, pct);
@@ -1133,7 +1141,7 @@
           <div class="lb-name">${r.name} ${r.roll ? `<small style="color:#aaa">(${r.roll})</small>` : ''}
             ${r.batch ? `<small style="color:#bbb;margin-left:4px">[${r.batch}]</small>` : ''}
           </div>
-          <div class="lb-score" style="font-weight:900;color:${i === 0 ? '#E6A800' : '#555'}">${r.score}/55</div>
+          <div class="lb-score" style="font-weight:900;color:${i === 0 ? '#E6A800' : '#555'}">${r.score}/60</div>
           <div class="lb-pct">${r.pct || r.score}%</div>
           <div style="font-size:0.78em;color:#bbb;margin-left:8px">${r.time || ''}</div>
         </div>
